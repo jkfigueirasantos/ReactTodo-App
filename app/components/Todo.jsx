@@ -8,9 +8,7 @@ var Todo = React.createClass({
 
     return (
       <div>
-        <p>
-          <strong>{'#' + id} - {text}</strong>
-        </p>
+        {id}. {text}
       </div>
     );
 
