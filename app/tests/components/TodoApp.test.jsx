@@ -12,4 +12,14 @@ describe('TodoApp', () => {
     expect(TodoApp).toExist();
   });
 
+  it('shoud add todo to the handleAddTodo prop', () => {
+    var message = 'Test text';
+    var todoApp = TestUtils.renderIntoDocument(<TodoApp />);
+    todoApp.setState({
+      todos: []
+    });
+    todoApp.handleAddTodo(message);
+    expect(todoApp.state.todos[0].text).toBe(message);
+  });
+
 });
