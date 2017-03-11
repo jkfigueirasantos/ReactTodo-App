@@ -56,4 +56,48 @@ describe('TodoAPI', () => {
 
   });
 
+  describe('filterTodos', () => {
+    var testTodos = [
+      {
+        id: 1,
+        text: 'Test todo',
+        completed: true
+      }, {
+        id: 2,
+        text: 'Other todo',
+        completed: false
+      }, {
+        id: 3,
+        text: 'Other todo',
+        completed: true
+      }
+    ];
+
+    it('should return all todos if showCompleted is checked', () => {
+      var filteredTodos = TodoAPI.filterTodos(testTodos, true, '');
+      expect(filteredTodos.length).toBe(3);
+    });
+
+    it('should return one todo when showCompleted is not checked', () => {
+      var filteredTodos = TodoAPI.filterTodos(testTodos, false, '');
+      expect(filteredTodos.length).toBe(1);
+    });
+
+    it('should return non-completed todo first', () => {
+      var filteredTodos = TodoAPI.filterTodos(testTodos, true, '');
+      expect(filteredTodos[0].completed).toBe(false);
+    });
+
+    it('should return one todo with "Test" text', () => {
+      var filteredTodos = TodoAPI.filterTodos(testTodos, true, 'test');
+      expect(filteredTodos.length).toBe(1);
+    });
+
+    it('should return all todos with searchText empty', () => {
+      var filteredTodos = TodoAPI.filterTodos(testTodos, true, '');
+      expect(filteredTodos.length).toBe(3);
+    });
+
+  });
+
 });
